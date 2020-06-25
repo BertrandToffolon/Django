@@ -1,1 +1,5 @@
 django
+django-extension
+git+https://github.com/bpython/
+bpython@0.13.1-release
+django-debug-toolbar
