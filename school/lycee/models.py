@@ -21,6 +21,8 @@ class Cursus(models.Model):
     null = True,
     default = '0000-00001'
   )
+  def __str__(self):
+    return self.name + " " + self.scholar_year
 
 class Student(models.Model):
   first_name = models.CharField(
@@ -70,4 +72,6 @@ class Student(models.Model):
     on_delete = models.CASCADE,
     null = True
   )
+  def __str__(self):
+    return self.email
 

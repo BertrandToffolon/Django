@@ -25,7 +25,9 @@ SECRET_KEY = 'v+2$cw(*(phop3r4qoqbjax1mvw!ory#o5%e1$+k@f6wq4(a(q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+  'django--btoffolon.repl.co'
+]
 
 
 # Application definition
