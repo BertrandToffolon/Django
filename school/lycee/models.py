@@ -75,3 +75,30 @@ class Student(models.Model):
   def __str__(self):
     return self.email
 
+class Presence(models.Model):
+  reason = models.CharField(
+    max_length = 50,
+    blank = False,
+    null = False
+  )
+  isMissing = models.BooleanField(
+    blank = False,
+    null = True
+  )
+  date = models.DateField(
+    blank = False,
+    null = False
+  )
+  start_time = models.TimeField(
+    blank = False,
+    null = False
+  )
+  stop_time = models.TimeField(
+    blank = False,
+    null = False
+  )
+  student = models.ForeignKey(
+    Student,
+    on_delete = models.CASCADE,
+    null = True
+  )
