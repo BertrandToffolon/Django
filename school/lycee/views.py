@@ -4,6 +4,7 @@ from django.template import loader
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from .models import Cursus,Student
 from . import forms
+from . import populate_Students3
 
 # Create your views here.
 def index(request):
@@ -18,6 +19,7 @@ def index(request):
   return HttpResponse(template.render(context,request))
 
 def detail(request, cursus_id):
+  result_liste = Student.objects.order_by('name')
   resp = "result for cursus {}".format(cursus_id)
   return HttpResponse(resp)
 

@@ -26,7 +26,8 @@ SECRET_KEY = 'v+2$cw(*(phop3r4qoqbjax1mvw!ory#o5%e1$+k@f6wq4(a(q'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-  'django--btoffolon.repl.co'
+  'django--btoffolon.repl.co',
+  'django.btoffolon.repl.co'
 ]
 
 
