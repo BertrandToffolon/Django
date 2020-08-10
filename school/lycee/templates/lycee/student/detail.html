@@ -1,0 +1,30 @@
+{% extends "master.html" %}
+{% load static %}
+{% if liste %}
+  {% block title %}
+  <h3> detail of a student </h3>
+  {% endblock %}
+
+  {% block content %}
+    {% for student in liste %}
+      <div class="container">
+      <h2>{{student.first_name}} {{student.last_name}}</h2>
+      <ul>
+        <li> {{student.birth_date}} </li>
+        <li> {{student.phone}} </li>
+        <li> {{student.email}} </li>
+        <li> {{student.cursus}} </li>
+      </ul>
+      </div>
+      <div class="container">
+      <input 
+            type="button" 
+            class="btn btn-primary" 
+            value="edit student" 
+            onclick="location.href='{% url 'edit_student' student_id=student.id %}';"/>
+      </div>
+    {% endfor %}  
+  {% endblock %}
+{% else %}
+  <p> no cursus to show </p>
+{% endif %}

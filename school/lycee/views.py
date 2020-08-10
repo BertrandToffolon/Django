@@ -49,6 +49,25 @@ def particular_call(request):
 
   return HttpResponse(template.render(context,request))
 
+def student_detail(request, student_id):
+  result_liste = Student.objects.filter(id=student_id)
+
+  template = loader.get_template('lycee/student/detail.html')
+
+  context = {
+    'liste' : result_liste
+  }
+  return HttpResponse(template.render(context,request))
+
+def edit_student(request, student_id):
+  result_liste = Student.objects.filter(id=student_id)
+
+  template = loader.get_template('lycee/student/edit.html')
+
+  context = {
+    'liste' : result_liste
+  }
+  return HttpResponse(template.render(context,request))
 
 class StudentCreateView(CreateView):
 

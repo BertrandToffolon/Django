@@ -1,0 +1,24 @@
+{% extends "master.html" %}
+{% load static %}
+{% if liste %}
+  {% block title %}
+  <h3> edit student </h3>
+  {% endblock %}
+
+  {% block content %}
+    {% for student in liste %}
+      <form>
+        first_name : <input type="text" value={{student.first_name}} /><br/>
+        last_name : <input type="text" value={{student.last_name}} /><br/>
+        birth_date : <input type="date" value={{student.birth_date}} /><br/>
+        phone : <input type="text" value={{student.phone}} /><br/>
+        email : <input type="text" value={{student.email}} /><br/>
+        comment : <input type="text" value={{student.comment}} /><br/>
+        cursus : <input type="text" value={{student.cursus}} /><br/>
+        <input type="submit" class="btn btn-danger" />
+      </form>
+    {% endfor %}  
+  {% endblock %}
+{% else %}
+  <p> no cursus to show </p>
+{% endif %}
