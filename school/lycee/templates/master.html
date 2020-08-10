@@ -23,7 +23,13 @@
             <article class="row">{% block content %}{% endblock %}</article>
 
             <footer class="navbar-fixed-bottom">
-                <p class="text-center"><strong><a href="/lycee/">lycee management</a></strong></p>
+                <input 
+                type="button" 
+                class="btn btn-primary btn-lg btn-block" 
+                style="margin-top: 10px" 
+                value="lycee management" 
+                onclick="location.href='{% url 'index' %}';"/>
+
             </footer>
         </div>
     </body>

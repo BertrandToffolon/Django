@@ -19,9 +19,36 @@ def index(request):
   return HttpResponse(template.render(context,request))
 
 def detail(request, cursus_id):
-  result_liste = Student.objects.order_by('name')
-  resp = "result for cursus {}".format(cursus_id)
-  return HttpResponse(resp)
+  result_liste = Student.objects.filter(cursus=cursus_id)
+
+  template = loader.get_template('lycee/cursus/detail.html')
+
+  context = {
+    'liste' : result_liste
+  }
+  return HttpResponse(template.render(context,request))
+
+def call(request, cursus_id):
+  result_liste = Student.objects.filter(cursus=cursus_id)
+
+  template = loader.get_template('lycee/cursus/call.html')
+
+  context = {
+    'liste' : result_liste
+  }
+  return HttpResponse(template.render(context,request))
+
+def particular_call(request):
+  result_liste = Cursus.objects.order_by('name')
+  #chargement du template
+  template = loader.get_template('lycee/student/formcall.html')
+  #contexte
+  context = {
+    'liste' : result_liste
+  }
+
+  return HttpResponse(template.render(context,request))
+
 
 class StudentCreateView(CreateView):
 
