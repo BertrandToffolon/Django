@@ -4,7 +4,7 @@ from .models import Student, Presence
 class StudentForm(ModelForm):
   class Meta:
     model = Student
-    fields = {
+    fields = [
       "first_name",
       "last_name",
       "birth_date",
@@ -12,4 +12,4 @@ class StudentForm(ModelForm):
       "phone",
       "comment",
       "cursus",
-    }
+    ]

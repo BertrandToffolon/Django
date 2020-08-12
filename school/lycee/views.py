@@ -65,21 +65,11 @@ class StudentEditView(UpdateView):
   #le model au se refere cette view
   model = Student
   #le formulaire associé (dans form.py)
-  #form_class = forms.StudentForm
-  fields = {
-      "first_name",
-      "last_name",
-      "birth_date",
-      "email",
-      "phone",
-      "comment",
-      "cursus",
-    }
+  form_class = forms.StudentForm
   #le nom du template
   template_name = "lycee/student/edit.html"
   def get_success_url(self):
     return reverse('index')
-    #kwargs={'student_id': self.get_object().id}
 
 
 
