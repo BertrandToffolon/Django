@@ -1,2 +1,20 @@
-{% extends "master.html" %}
-{% load static %}
+{% extends "master.html" %} 
+{% load static %} 
+  {% block title %}
+    <h3> call for {{cursus.name}} </h3>
+  {% endblock %} 
+
+  {% block content %}
+    <form method="post">
+      {% csrf_token %}
+        <!-- Cross Site Request Forgeries -->
+        <!-- see https://docs.djangoproject.com/fr/1.8/ref/csrf/ -->
+      {{form.date}}
+      {% for student in form.student%}
+      <div class="row">
+        {{form.isMissing}} {{student}}
+      </div>
+      {%endfor%}
+        <button class="btn btn-primary" type="submit">submit</button>
+    </form>
+  {% endblock %}

@@ -13,3 +13,11 @@ class StudentForm(ModelForm):
       "comment",
       "cursus",
     ]
+class CallForm(ModelForm):
+  class Meta:
+    model = Presence
+    fields = [
+      "date",
+      "isMissing",
+      "student",
+    ]
