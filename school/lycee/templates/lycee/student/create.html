@@ -12,6 +12,11 @@
         <!-- see https://docs.djangoproject.com/fr/1.8/ref/csrf/ -->
         {{form.as_p}}
         <div class="button">
+          <input 
+          type="button"
+          class="btn btn-danger" 
+          onclick="location.href='{% url 'index' %}';"
+          value="Cancel"/>
           <button class="btn btn-primary" type="submit">submit</button>
         </div>
     </form>
