@@ -81,6 +81,18 @@ class StudentCreateView(CreateView):
   def get_success_url(self):
     return reverse('student_detail', args=(self.object.id,))
 
+class ParticularCallCreateView(CreateView):
+  #le model au se refere cette view
+  model = Presence
+  #le formulaire associé (dans form.py)
+  form_class = forms.PresenceForm
+  #le nom du template
+  template_name = "lycee/presence/create.html" 
+  
+  def get_success_url(self):
+    return reverse('index')
+
+
 
 
   

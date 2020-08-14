@@ -1,6 +1,6 @@
 from django.conf.urls import url
 from . import views
-from .views import StudentCreateView, StudentEditView, Call
+from .views import StudentCreateView, StudentEditView, Call, ParticularCallCreateView
 
 urlpatterns = [
   url(r'^$', views.index, name='index'),
@@ -11,4 +11,6 @@ urlpatterns = [
   url(r'^student/(?P<student_id>[0-9]+)$', views.student_detail, name='student_detail'),
   url(r'^student/edit/(?P<pk>\d+)/$', StudentEditView.as_view(), name='edit_student'),
   url(r'^student/edit/(?P<student_id>\d+)/$', StudentEditView.as_view(), name='edit_student'),
+  url(r'^particularCall/$', ParticularCallCreateView.as_view(), name='particularCall'),
+
 ]

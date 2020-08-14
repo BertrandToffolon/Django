@@ -21,3 +21,15 @@ class CallForm(ModelForm):
       "isMissing",
       "student",
     ]
+
+class PresenceForm(ModelForm):
+  class Meta:
+    model = Presence
+    fields = [
+      "reason",
+      "isMissing",
+      "date",
+      "start_time",
+      "stop_time",
+      "student",
+    ]
