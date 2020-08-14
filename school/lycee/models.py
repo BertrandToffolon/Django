@@ -28,10 +28,12 @@ class Student(models.Model):
   first_name = models.CharField(
     max_length = 50,
     blank = False,
+    default = "John",
     null = False
   )
   birth_date = models.DateField(
     verbose_name = 'date of birth',
+    default = "AAAA-MM-DD",
     blank = False,
     null=  False
   )
@@ -40,7 +42,7 @@ class Student(models.Model):
     help_text = "last name of student",
     blank = False,
     null = False,
-    default = "???",
+    default = "DOE",
     max_length=255
   )
   phone = models.CharField(

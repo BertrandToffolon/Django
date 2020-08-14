@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse
@@ -58,7 +58,6 @@ class Call(CreateView):
 
   template_name = "lycee/cursus/call.html"
 
-
 class StudentEditView(UpdateView):
   #le model au se refere cette view
   model = Student
@@ -68,10 +67,7 @@ class StudentEditView(UpdateView):
   template_name = "lycee/student/edit.html"
   
   def get_success_url(self):
-    return reverse('index')
-
-
-
+    return reverse('student_detail', args=(self.object.id,))
 
 class StudentCreateView(CreateView):
 
@@ -81,5 +77,10 @@ class StudentCreateView(CreateView):
   form_class = forms.StudentForm
   #le nom du template
   template_name = "lycee/student/create.html" 
+  
+  def get_success_url(self):
+    return reverse('student_detail', args=(self.object.id,))
+
+
 
   
