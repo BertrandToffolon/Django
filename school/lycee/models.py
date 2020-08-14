@@ -89,14 +89,17 @@ class Presence(models.Model):
   )
   date = models.DateField(
     blank = False,
+    default = "AAAA-MM-DD",
     null = False
   )
   start_time = models.TimeField(
     blank = False,
+    default = "HH:MM:SS",
     null = False
   )
   stop_time = models.TimeField(
     blank = False,
+    default = "HH:MM:SS",
     null = False
   )
   student = models.ForeignKey(

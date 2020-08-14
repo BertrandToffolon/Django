@@ -54,7 +54,7 @@ def student_detail(request, student_id):
 class Call(CreateView):
   model = Presence
 
-  form_class = forms.CallForm
+  form_class = forms.PresenceForm
 
   template_name = "lycee/cursus/call.html"
 
