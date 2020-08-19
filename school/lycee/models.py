@@ -75,7 +75,7 @@ class Student(models.Model):
     null = True
   )
   def __str__(self):
-    return self.email
+    return self.first_name + " " + self.last_name
 
 class Presence(models.Model):
   reason = models.CharField(
@@ -107,3 +107,48 @@ class Presence(models.Model):
     on_delete = models.CASCADE,
     null = True
   )
+
+class Creneaux(models.Model):
+  name = models.CharField(
+    max_length = 50,
+    blank = False,
+    null = False
+  )
+  start_time = models.TimeField(
+    blank = False,
+    default = "HH:MM:SS",
+    null = False
+  )
+  stop_time = models.TimeField(
+    blank = False,
+    default = "HH:MM:SS",
+    null = False
+  )
+  def __str__(self):
+    return self.name
+
+
+class Call(models.Model):
+  isMissing = models.BooleanField(
+    blank = False,
+    null = True,
+    default = False,
+  )
+  date = models.DateField(
+    blank = False,
+    default = "AAAA-MM-DD",
+    null = False
+  )
+  student = models.ForeignKey(
+    Student,
+    on_delete = models.CASCADE,
+    null = True
+  )
+  creneaux = models.ForeignKey(
+    Creneaux,
+    on_delete = models.CASCADE,
+    null = True
+  )
+  def __str__(self):
+    return self.date + " " + self.creneaux
+

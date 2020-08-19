@@ -1,4 +1,4 @@
-from lycee.models import Student, Cursus
+from lycee.models import Student, Cursus, Creneaux
 from datetime import datetime
 
 def create():
@@ -735,3 +735,51 @@ def create():
 	birth_date 		= datetime(1999,12,26),
 	comment 	= "no comment")
 
+def addCreaneau():
+  c1=Creneaux()
+  c1.name="M1"
+  c1.Start_time= datetime.time(8,0,0)
+  c1.Stop_time=datetime.time(9,0,0)
+  c1.save()
+  c2=Creneaux()
+  c2.name="M2"
+  c2.Start_time=datetime.time(9,0,0)
+  c2.Stop_time=datetime.time(10,0,0)
+  c2.save()
+  c3=Creneaux()
+  c3.name="M3"
+  c3.Start_time=datetime.time(10,0,0)
+  c3.Stop_time=datetime.time(11,0,0)
+  c3.save()
+  c4=Creneaux()
+  c4.name="M4"
+  c4.Start_time=datetime.time(11,0,0)
+  c4.Stop_time=datetime.time(12,0,0)
+  c4.save()
+  c5=Creneaux()
+  c5.name="S1"
+  c5.Start_time=datetime.time(13,0,0)
+  c5.Stop_time=datetime.time(14,0,0)
+  c5.save()
+  c6=Creneaux()
+  c6.name="S2"
+  c6.Start_time=datetime.time(14,0,0)
+  c6.Stop_time=datetime.time(15,0,0)
+  c6.save()
+  c7=Creneaux()
+  c7.name="S3"
+  c7.Start_time=datetime.time(15,0,0)
+  c7.Stop_time=datetime.time(16,0,0)
+  c7.save()
+  c8=Creneaux()
+  c8.name="S4"
+  c8.Start_time=datetime.time(16,0,0)
+  c8.Stop_time=datetime.time(17,0,0)
+  c8.save()
+  c9=Creneaux()
+  c9.name="S5"
+  c9.Start_time=datetime.time(17,0,0)
+  c9.Stop_time=datetime.time(18,0,0)
+  c9.save()
+
+  

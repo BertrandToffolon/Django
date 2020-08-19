@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse
-from .models import Cursus,Student,Presence
+from .models import Cursus,Student,Presence,Call,Creneaux
 from . import forms
 from . import populate_Students3
 
@@ -51,13 +51,29 @@ def student_detail(request, student_id):
   }
   return HttpResponse(template.render(context,request))
 
-class Call(CreateView):
-  model = Presence
+def callCreateView(request, cursus_id):
+  student_liste = Student.objects.filter(cursus=cursus_id)
+  cursus_liste = Cursus.objects.filter(id=cursus_id)
+  creneaux_liste = Creneaux.objects.order_by('name')
+  template = loader.get_template('lycee/cursus/call.html')
 
-  form_class = forms.PresenceForm
+  context = {
+    'student_liste' : student_liste,
+    'cursus_liste' : cursus_liste,
+    'creneaux_liste' : creneaux_liste
+  }
+  return HttpResponse(template.render(context,request))
 
-  template_name = "lycee/cursus/call.html"
-
+def createCallView(request, cursus_id):
+  form = forms.CallForm(request.POST)
+  if form.is_valid():
+    sys.stderr(form.cleaned_data["date"])
+    # on execute seulement si tout est ok dans la form
+    #CallObj = Call() # Definition d'un objet modele
+    #myObj.label = form.cleaned_data['label']
+    #myObj.description = form.cleaned_data['description']
+  return reverse('index')
+  
 class StudentEditView(UpdateView):
   #le model au se refere cette view
   model = Student

@@ -1,5 +1,5 @@
 from django.forms.models import ModelForm
-from .models import Student, Presence
+from .models import Student, Presence, Call, Creneaux
 
 class StudentForm(ModelForm):
   class Meta:
@@ -24,4 +24,21 @@ class PresenceForm(ModelForm):
       "start_time",
       "stop_time",
       "student",
+    ]
+class CallForm(ModelForm):
+  class Meta:
+    model = Call
+    fields = [
+      "isMissing",
+      "date",
+      "student",
+      "creneaux",
+    ]
+class CreneauxForm(ModelForm):
+  class Meta:
+    model = Creneaux
+    fields = [
+      "name",
+      "start_time",
+      "stop_time",
     ]

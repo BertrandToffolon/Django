@@ -1,20 +1,52 @@
 {% extends "master.html" %} 
-{% load static %} 
+{% load static %}
+  {% if cursus_liste %}
   {% block title %}
+  {% for cursus in cursus_liste %}
     <h3> call for {{cursus.name}} </h3>
-  {% endblock %} 
+  {% endfor %}
+  {% endblock %}
+  {% else %} 
+    <p> error cursus </p>
+  {% endif %}
 
+{% if student_liste %}
+  {% if creneaux_liste %}
   {% block content %}
-    <form method="post">
-      {% csrf_token %}
+    <div class="container">
+      {% if cursus_liste %}
+      {% for cursus in cursus_liste %}
+      <form action="{% url 'createCall' cursus_id=cursus.id %}" method="POST">
+      {% endfor %}
+      {% else %} 
+        <p> error cursus </p>
+      {% endif %}
+        {% csrf_token %}
         <!-- Cross Site Request Forgeries -->
         <!-- see https://docs.djangoproject.com/fr/1.8/ref/csrf/ -->
-      {{form.date}}
-      {% for student in form.student%}
-      <div class="row">
-        {{form.isMissing}} {{student}}
-      </div>
-      {%endfor%}
-        <button class="btn btn-primary" type="submit">submit</button>
-    </form>
-  {% endblock %}
+        <div class="row">
+          <input type="date" name="date" value="HH:MM:SS"/>
+          <select name="creneaux">
+            {% for creneaux in creneaux_liste %}
+              <option value="{{creneaux.name}}">{{creneaux.name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        {% for student in student_liste %}
+          <div class="row" style="display: block">
+            <input type="checkbox" name="isMissing">
+            <label name="student">{{student.first_name}} {{student.last_name}}</label>
+          </div>
+        {% endfor %}
+        <div class="button">
+          <button class="btn btn-primary" type="submit">submit</button>
+        </div>
+      </form>
+    </div>
+    {% endblock %}
+    {% else %}
+      <p> error creneaux </p>
+    {% endif %}
+  {% else %}
+    <p> error students </p>
+  {% endif %}
