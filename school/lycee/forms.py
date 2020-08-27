@@ -29,11 +29,12 @@ class CallForm(ModelForm):
   class Meta:
     model = Call
     fields = [
-      "isMissing",
       "date",
-      "student",
       "creneaux",
+      "isMissing",
+      "student",
     ]
+    exclude=["student"]
 class CreneauxForm(ModelForm):
   class Meta:
     model = Creneaux

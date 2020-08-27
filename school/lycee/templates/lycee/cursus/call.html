@@ -16,7 +16,7 @@
     <div class="container">
       {% if cursus_liste %}
       {% for cursus in cursus_liste %}
-      <form action="{% url 'createCall' cursus_id=cursus.id %}" method="POST">
+      <form action="" method="POST">
       {% endfor %}
       {% else %} 
         <p> error cursus </p>
@@ -28,13 +28,13 @@
           <input type="date" name="date" value="HH:MM:SS"/>
           <select name="creneaux">
             {% for creneaux in creneaux_liste %}
-              <option value="{{creneaux.name}}">{{creneaux.name}}</option>
+              <option value="{{creneaux.id}}">{{creneaux.name}}</option>
             {% endfor %}
           </select>
         </div>
         {% for student in student_liste %}
           <div class="row" style="display: block">
-            <input type="checkbox" name="isMissing">
+            <input type="checkbox" name="student-{{student.id}}">
             <label name="student">{{student.first_name}} {{student.last_name}}</label>
           </div>
         {% endfor %}

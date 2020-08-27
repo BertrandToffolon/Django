@@ -149,6 +149,6 @@ class Call(models.Model):
     on_delete = models.CASCADE,
     null = True
   )
-  def __str__(self):
-    return self.date + " " + self.creneaux
+  #def __str__(self):
+    #return self.date + " " + self.creneaux
 
