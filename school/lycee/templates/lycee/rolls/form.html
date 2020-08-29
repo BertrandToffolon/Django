@@ -1,0 +1,50 @@
+{% extends "master.html" %} 
+{% load static %}
+  {% if student_liste %}
+    {% block title %}
+      <h3> absence of {{student_liste.first_name}} {{student_liste.last_name}} </h3>
+    {% endblock %}
+  {% if call_liste %}
+  {% if creneaux_liste %}
+      {% block content %}
+        <div class="container">
+          <form action="" method="POST">
+            {% csrf_token %}
+            <!-- Cross Site Request Forgeries -->
+            <!-- see https://docs.djangoproject.com/fr/1.8/ref/csrf/ -->
+            <div class="row">
+              <input type="date" name="date" value="1970-01-01" hidden="hidden"/>
+            </div>
+            <div class="row">
+              <input type="text" name="reason"/>
+            </div>
+            <div class="row">
+              <input type="checkbox" name="isMissing" checked="checked" hidden="hidden">
+            </div>
+            <div class="row">
+              <input type="time" name="start_time" value="08:00" hidden="hidden"/>
+            </div>
+            <div class="row">
+              <input type="time" name="stop_time" value="09:00" hidden="hidden"/>
+            </div>
+            <div class="row">
+              <select name="student" hidden="hidden">
+                <option value="{{student_liste.id}}">{{student_liste.first_name}} {{student_liste.last_name}}</option>
+              </select>
+            </div>
+            <div class="button">
+              <button class="btn btn-primary" type="submit">submit</button>
+            </div>
+          </form>
+        </div>
+      {% endblock %}
+    {% else%}
+      <p> error creneaux</p>
+    {% endif %}
+  {% else %}
+    <p> error call </p>
+  {% endif %}
+{% else %} 
+  <p> error student </p>
+{% endif %}
+

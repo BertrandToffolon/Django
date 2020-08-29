@@ -7,6 +7,8 @@ from .models import Cursus,Student,Presence,Call,Creneaux
 from . import forms
 from . import populate_Students3
 import logging
+from datetime import datetime
+
 
 
 # Create your views here.
@@ -70,7 +72,7 @@ def callCreateView(request, cursus_id):
         call_Instance.student = Student.objects.filter(id=studentID)[0]
         call_Instance.isMissing = True
         call_Instance.save()
-      #return reverse('index')
+      return HttpResponseRedirect('/lycee')
   else:
     pass
   
@@ -78,6 +80,48 @@ def callCreateView(request, cursus_id):
     'student_liste' : student_liste,
     'cursus_liste' : cursus_liste,
     'creneaux_liste' : creneaux_liste
+  }
+  return HttpResponse(template.render(context,request))
+
+def manage_roll(request):
+
+  result_liste = Call.objects.all()
+
+  template = loader.get_template('lycee/rolls/detail.html')
+
+  context = {
+    'liste' : result_liste
+  }
+
+  return HttpResponse(template.render(context,request))
+
+def make_roll(request, call_id):
+  call_liste = Call.objects.get(id=call_id)
+  student_liste = Student.objects.get(id=call_liste.student.id)
+  creneaux_liste = name=call_liste.creneaux
+  template = loader.get_template('lycee/rolls/form.html')
+  
+  if request.method == 'POST':
+    form = forms.PresenceForm(request.POST)
+    
+    if form.is_valid():
+      call_Instance = Presence(
+        date=call_liste.date, 
+        isMissing=call_liste.isMissing,
+        reason=form.cleaned_data['reason'],
+        start_time=creneaux_liste.start_time, 
+        stop_time=creneaux_liste.stop_time,
+        student = Student.objects.filter(id=call_liste.student.id)[0])
+      call_Instance.save()
+      call_liste.delete()
+    return HttpResponseRedirect('/lycee/rolls')
+  else:
+    pass
+  
+  context = {
+    'call_liste' : call_liste,
+    'student_liste' : student_liste,
+    'creneaux_liste' : creneaux_liste,
   }
   return HttpResponse(template.render(context,request))
 
