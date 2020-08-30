@@ -29,7 +29,8 @@ def detail(request, cursus_id):
   template = loader.get_template('lycee/cursus/detail.html')
 
   context = {
-    'liste' : result_liste
+    'liste' : result_liste,
+    'cursus' : Cursus.objects.get(id=cursus_id)
   }
   return HttpResponse(template.render(context,request))
 
@@ -50,7 +51,8 @@ def student_detail(request, student_id):
   template = loader.get_template('lycee/student/detail.html')
 
   context = {
-    'liste' : result_liste
+    'liste' : result_liste,
+    'absence' : len(Presence.objects.filter(student=student_id))
   }
   return HttpResponse(template.render(context,request))
 
@@ -72,7 +74,7 @@ def callCreateView(request, cursus_id):
         call_Instance.student = Student.objects.filter(id=studentID)[0]
         call_Instance.isMissing = True
         call_Instance.save()
-      return HttpResponseRedirect('/lycee')
+      return HttpResponseRedirect('/')
   else:
     pass
   
@@ -114,7 +116,7 @@ def make_roll(request, call_id):
         student = Student.objects.filter(id=call_liste.student.id)[0])
       call_Instance.save()
       call_liste.delete()
-    return HttpResponseRedirect('/lycee/rolls/detail.html')
+    return HttpResponseRedirect('/rolls')
   else:
     pass
   
@@ -130,7 +132,7 @@ def absense(request, cursus_id):
   template = loader.get_template('lycee/presence/detail.html')
   context = {
     'student_liste' : student_liste,
-    'cursus' : cursus_id
+    'cursus' : Cursus.objects.get(id=cursus_id)
   }
   return HttpResponse(template.render(context,request))
 
