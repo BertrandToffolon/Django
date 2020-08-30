@@ -1,4 +1,4 @@
-8{% extends "master.html" %}
+{% extends "master.html" %}
 {% load static %}
 
 {% if liste %}
@@ -13,7 +13,7 @@
         <div class="container" style="margin-bottom: 10px; margin-right: 15px;">
           <div class="row" >
             <div class="col-sm">
-              <a href="/lycee/{{cursus.id}}">{{cursus.name}}</a>
+              <a href="/{{cursus.id}}">{{cursus.name}}</a>
             </div>
             <div class="col-sm-20">
               <input 
