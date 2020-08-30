@@ -114,7 +114,7 @@ def make_roll(request, call_id):
         student = Student.objects.filter(id=call_liste.student.id)[0])
       call_Instance.save()
       call_liste.delete()
-    return HttpResponseRedirect('/lycee/rolls')
+    return HttpResponseRedirect('/lycee/rolls/detail.html')
   else:
     pass
   
@@ -124,6 +124,29 @@ def make_roll(request, call_id):
     'creneaux_liste' : creneaux_liste,
   }
   return HttpResponse(template.render(context,request))
+
+def absense(request, cursus_id):
+  student_liste = Student.objects.filter(cursus=cursus_id).order_by('cursus')
+  template = loader.get_template('lycee/presence/detail.html')
+  context = {
+    'student_liste' : student_liste,
+    'cursus' : cursus_id
+  }
+  return HttpResponse(template.render(context,request))
+
+def visualize_absense(request, cursus_id, student_id):
+  liste_presence = Presence.objects.filter(student=student_id).order_by('date')
+  lenght = len(liste_presence)
+
+  template = loader.get_template('lycee/presence/vizualize.html')
+  context = {
+    'student' : Student.objects.get(id=student_id),
+    'cursus' : Cursus.objects.get(id=cursus_id),
+    'liste_presence' : liste_presence,
+    'lenght' : lenght
+  }
+  return HttpResponse(template.render(context,request))
+
 
 class StudentEditView(UpdateView):
   #le model au se refere cette view

@@ -14,6 +14,8 @@ urlpatterns = [
   url(r'^student/edit/(?P<student_id>\d+)/$', StudentEditView.as_view(), name='edit_student'),
   url(r'^particularCall/$', ParticularCallCreateView.as_view(), name='particularCall'),
   url(r'^rolls/$', views.manage_roll, name='manage_roll'),
-  url(r'^rolls/(?P<call_id>\d+)/$', views.make_roll, name="make_roll")
+  url(r'^rolls/(?P<call_id>\d+)/$', views.make_roll, name="make_roll"),
+  url(r'^absence/(?P<cursus_id>[0-9]+)/$', views.absense, name="absense"),
+  url(r'^absence/(?P<cursus_id>[0-9]+)/(?P<student_id>\d+)/$', views.visualize_absense, name="visualize_absense"),
 
 ]

@@ -1,0 +1,36 @@
+{% extends "master.html" %}
+{% load static %}
+
+  {% block title %}
+  <h3> Absences for {{student.first_name}} {{student.last_name}} </h3>
+  {% endblock %}
+
+  {% block content %}
+    <ul>
+    {% for presence in liste_presence %}
+      <div class="container">
+        
+        <div class="row">
+          <div class="">
+            <li>
+              <label>{{presence.date}} {{presence.start_time}} - {{presence.stop_time}} -- {{presence.reason}}</label>
+            </li>
+          </div>
+          <div class="col-sm-10">
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </ul>
+    <div class="container">
+      <div class="row">
+        <p> total des absences : {{lenght}}
+      </div>
+    </div>
+      <input 
+        type="button" 
+        class="btn btn-primary" 
+        value="visualisate absence" 
+        onclick="location.href='{% url 'absense'  cursus_id=cursus.id %}';"/>
+
+  {% endblock %}
